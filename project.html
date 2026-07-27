@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){var l=new URLSearchParams(location.search).get('lang')==='en'?'en':'ar';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
-<title>الأعمال | محمد محمود الريح</title>
-<meta name="description" content="مشاريع حقيقية لمحمد محمود الريح: Dental Zone، المصحف الإلكتروني التفاعلي، مكتب نهال الثقافي، ووكالة MoMA AI.">
+<title>المدونة | محمد محمود الريح</title>
+<meta name="description" content="مدونة محمد محمود الريح — مقالات قادمة عن تطوير الويب، أتمتة الأعمال بالذكاء الاصطناعي، والتسويق الرقمي.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230B0E14'/%3E%3Ctext x='50' y='69' font-family='Arial' font-size='56' font-weight='700' fill='%23F2B84B' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
@@ -225,22 +225,41 @@ footer{padding-block:64px 32px;border-top:1px solid var(--border)}
 .page-hero h1{font-size:clamp(30px,4.8vw,46px)}
 .page-hero .hero-sub{margin-bottom:0}
 
-/* ---------- Filters ---------- */
-.filter-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
-.filter-btn{
-  padding:9px 20px;border-radius:999px;border:1px solid var(--border);font-size:13.5px;font-weight:600;
-  color:var(--text-muted);transition:.2s;
-}
-.filter-btn.active{background:var(--surface-2);color:var(--text);border-color:var(--gold-line)}
-.filter-btn:hover{color:var(--text)}
+/* ---------- Page header (sub-pages) ---------- */
+.page-hero{padding-block:56px 40px}
+.page-hero h1{font-size:clamp(30px,4.8vw,46px)}
+.page-hero .hero-sub{margin-bottom:0}
 
-/* ---------- Project grid (page) ---------- */
-.projects-page{padding-block:0 80px}
-.project-card[data-cat]{display:flex}
-.project-card.hide{display:none}
-.tech-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
-.tech-chip{font-family:var(--font-mono);font-size:11px;color:var(--text-faint);border:1px solid var(--border);border-radius:6px;padding:3px 8px}
-.project-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:4px}
+/* ---------- Blog: topics ---------- */
+.topics{padding-block:16px 70px}
+.topic-grid{display:grid;gap:18px;grid-template-columns:1fr}
+.topic-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;
+  transition:.3s var(--ease);
+}
+.topic-card:hover{transform:translateY(-4px);border-color:var(--border)}
+.topic-soon{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-faint);
+  display:flex;align-items:center;gap:6px;margin-top:16px;
+}
+.topic-soon .dot-blink{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.topic-card h3{font-size:18px;margin:14px 0 10px}
+.topic-card p{color:var(--text-muted);font-size:14px}
+@media(min-width:760px){.topic-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- Notify form ---------- */
+.notify{padding-block:70px 90px;background:var(--ink-2);border-block:1px solid var(--border)}
+.notify-box{max-width:520px;margin-inline:auto;text-align:center}
+.notify-form{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;justify-content:center}
+.notify-form input{
+  flex:1;min-width:220px;background:var(--surface);border:1px solid var(--border);border-radius:999px;
+  padding:14px 20px;color:var(--text);font-size:14.5px;
+}
+.notify-form input::placeholder{color:var(--text-faint)}
+.notify-form input:focus{outline:none;border-color:var(--gold-line)}
+.notify-msg{margin-top:16px;font-size:14px;color:var(--gold);display:none}
+.notify-msg.show{display:block}
 
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
@@ -288,84 +307,44 @@ footer{padding-block:64px 32px;border-top:1px solid var(--border)}
     <span class="node" style="top:65%;left:85%"></span>
     <span class="node" style="top:75%;left:20%"></span>
     <div class="container hero-inner">
-      <span class="eyebrow" data-i18n="pr_eyebrow"></span>
-      <h1 data-i18n="pr_title"></h1>
-      <p class="hero-sub" data-i18n="pr_sub"></p>
+      <span class="eyebrow" data-i18n="bl_eyebrow"></span>
+      <h1 data-i18n="bl_title"></h1>
+      <p class="hero-sub" data-i18n="bl_sub"></p>
     </div>
   </section>
 
-  <section class="projects-page container" data-reveal>
-    <div class="filter-row" id="filterRow">
-      <button class="filter-btn active" data-filter="all" data-i18n="f_all"></button>
-      <button class="filter-btn" data-filter="web" data-i18n="f_web"></button>
-      <button class="filter-btn" data-filter="ai" data-i18n="f_ai"></button>
+  <section class="topics container" data-reveal>
+    <div class="topic-grid">
+      <div class="topic-card">
+        <span class="tag tag-ai">AI</span>
+        <h3 data-i18n="t1_t"></h3>
+        <p data-i18n="t1_b"></p>
+        <div class="topic-soon"><span class="dot-blink"></span><span data-i18n="soon"></span></div>
+      </div>
+      <div class="topic-card">
+        <span class="tag tag-web">WEB</span>
+        <h3 data-i18n="t2_t"></h3>
+        <p data-i18n="t2_b"></p>
+        <div class="topic-soon"><span class="dot-blink"></span><span data-i18n="soon"></span></div>
+      </div>
+      <div class="topic-card">
+        <span class="tag tag-mkt">MKT</span>
+        <h3 data-i18n="t3_t"></h3>
+        <p data-i18n="t3_b"></p>
+        <div class="topic-soon"><span class="dot-blink"></span><span data-i18n="soon"></span></div>
+      </div>
     </div>
-    <div class="project-grid">
+  </section>
 
-      <div class="project-card" data-cat="web">
-        <div class="project-media"><span>Dental Zone</span></div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag tag-web">WEB</span></div>
-          <h3>Dental Zone</h3>
-          <p data-i18n="p1_body"></p>
-          <div class="tech-row"><span class="tech-chip">WordPress</span><span class="tech-chip" data-i18n="tech_responsive"></span></div>
-          <div class="project-links">
-            <a href="https://dentalzone.wuaze.com" target="_blank" rel="noopener" class="pillar-link" style="color:var(--blue)">
-              <span data-i18n="proj_visit"></span>
-              <svg class="icon icon-arrow flip-rtl" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card" data-cat="web">
-        <div class="project-media"><span data-i18n="p2_title"></span></div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag tag-web">WEB</span></div>
-          <h3 data-i18n="p2_title"></h3>
-          <p data-i18n="p2_body"></p>
-          <div class="tech-row"><span class="tech-chip">HTML5</span><span class="tech-chip">CSS3</span><span class="tech-chip">JavaScript</span></div>
-          <div class="project-links">
-            <a href="https://github.com/moh007mmed/quran-kareem" target="_blank" rel="noopener" class="pillar-link" style="color:var(--blue)">
-              <span data-i18n="proj_repo"></span>
-              <svg class="icon icon-arrow flip-rtl" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card" data-cat="web">
-        <div class="project-media"><span data-i18n="p3_title"></span></div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag tag-web">WEB</span></div>
-          <h3 data-i18n="p3_title"></h3>
-          <p data-i18n="p3_body"></p>
-          <div class="tech-row"><span class="tech-chip">HTML5</span><span class="tech-chip">CSS3</span><span class="tech-chip" data-i18n="tech_client"></span></div>
-          <div class="project-links">
-            <a href="https://github.com/moh007mmed/nehal-cultural-office" target="_blank" rel="noopener" class="pillar-link" style="color:var(--blue)">
-              <span data-i18n="proj_repo"></span>
-              <svg class="icon icon-arrow flip-rtl" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card" data-cat="ai">
-        <div class="project-media"><span>MoMA AI</span></div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag tag-ai">AI</span><span class="tag tag-web">WEB</span></div>
-          <h3 data-i18n="p4_title"></h3>
-          <p data-i18n="p4_body"></p>
-          <div class="tech-row"><span class="tech-chip">GPT-4</span><span class="tech-chip">WhatsApp API</span><span class="tech-chip" data-i18n="tech_automation"></span></div>
-          <div class="project-links">
-            <a href="https://moh007mmed.github.io/my-bot-site/" target="_blank" rel="noopener" class="pillar-link" style="color:var(--gold)">
-              <span data-i18n="proj_visit"></span>
-              <svg class="icon icon-arrow flip-rtl" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
+  <section class="notify" data-reveal>
+    <div class="container notify-box">
+      <h2 data-i18n="notify_title"></h2>
+      <p data-i18n="notify_sub" style="color:var(--text-muted);margin-top:10px"></p>
+      <form class="notify-form" id="notifyForm">
+        <input type="email" required id="notifyEmail" data-i18n-placeholder="notify_ph">
+        <button type="submit" class="btn btn-primary" data-i18n="notify_btn"></button>
+      </form>
+      <p class="notify-msg" id="notifyMsg" data-i18n="notify_success"></p>
     </div>
   </section>
 
@@ -417,23 +396,25 @@ footer{padding-block:64px 32px;border-top:1px solid var(--border)}
 <script>
 const i18n = {
   ar:{
-    meta_title:"الأعمال | محمد محمود الريح",
-    meta_desc:"مشاريع حقيقية لمحمد محمود الريح: Dental Zone، المصحف الإلكتروني التفاعلي، مكتب نهال الثقافي، ووكالة MoMA AI.",
+    meta_title:"المدونة | محمد محمود الريح",
+    meta_desc:"مدونة محمد محمود الريح — مقالات قادمة عن تطوير الويب، أتمتة الأعمال بالذكاء الاصطناعي، والتسويق الرقمي.",
     nav_home:"الرئيسية", nav_about:"نبذة عني", nav_skills:"المهارات", nav_projects:"الأعمال", nav_blog:"المدونة", nav_contact:"تواصل",
     nav_cta:"لنعمل معًا",
-    pr_eyebrow:"[ الأعمال ]",
-    pr_title:"مشاريع حقيقية، لا نماذج تجريبية",
-    pr_sub:"كل مشروع هنا منشور وقيد الاستخدام الفعلي — من مواقع تعليمية إلى أنظمة ذكاء اصطناعي تعمل على واتساب.",
-    f_all:"الكل", f_web:"ويب", f_ai:"ذكاء اصطناعي",
-    p1_body:"موقع تعليمي شامل في طب الأسنان، مبني على ووردبريس، يقدّم محتوى ونصائح لطلاب وممارسي طب الأسنان.",
-    p2_title:"المصحف الإلكتروني التفاعلي",
-    p2_body:"منصة رقمية إسلامية متعددة الصفحات تضم تلاوات القرآن الكريم، صفحة قراءة، ولوحة تحكم — مشروع شخصي بروح خيرية.",
-    p3_title:"مكتب نهال الثقافي",
-    p3_body:"موقع تعريفي وعرض أعمال بُني لعميل، يبرز الهوية البصرية والمحتوى الثقافي بشكل احترافي.",
-    p4_title:"MoMA AI — وكالة أتمتة الذكاء الاصطناعي",
-    p4_body:"وكالتي الخاصة لأتمتة الأعمال بالذكاء الاصطناعي — شات بوت عيادات يعمل ٢٤/٧ لحجز المواعيد، أتمتة العمليات وترحيل البيانات، وذكاء متاجر لتحليل سلوك العملاء. باقات تبدأ من 25$.",
-    tech_responsive:"تصميم متجاوب", tech_client:"عمل لعميل", tech_automation:"أتمتة",
-    proj_visit:"زيارة المشروع", proj_repo:"عرض المستودع",
+    bl_eyebrow:"[ المدونة ]",
+    bl_title:"المدونة قيد الإعداد",
+    bl_sub:"أكتب هنا قريبًا عن تطوير الويب، وأتمتة الأعمال بالذكاء الاصطناعي، والتسويق الرقمي — تابعني لأول تنبيه.",
+    t1_t:"كيف تُحوّل الأتمتة عيادتك إلى نظام يعمل ٢٤/٧",
+    t1_b:"نظرة داخل بناء شات بوت حجز مواعيد حقيقي لعيادات الأسنان.",
+    t2_t:"دليل عملي لبناء موقع ثنائي اللغة من الصفر",
+    t2_b:"كيف تُصمَّم موقعًا يخدم القارئ العربي والإنجليزي بلا حلول مؤقتة.",
+    t3_t:"كيف تحوّل متابعيك إلى عملاء فعليين",
+    t3_b:"استراتيجيات محتوى عملية جربتها مع علامات تجارية حقيقية.",
+    soon:"قادم قريبًا",
+    notify_title:"كن أول من يعرف",
+    notify_sub:"اترك بريدك الإلكتروني وسأشعرك فور نشر أول مقال.",
+    notify_ph:"بريدك الإلكتروني",
+    notify_btn:"أشعرني",
+    notify_success:"تم! سأشعرك فور نشر أول مقال.",
     cta_title:"عندك فكرة؟ لنحوّلها لشيء يعمل.",
     cta_sub:"سواء كان موقعًا جديدًا أو نظام أتمتة ذكي بالذكاء الاصطناعي — راسلني الآن.",
     cta_btn:"تواصل معي",
@@ -443,23 +424,25 @@ const i18n = {
     footer_location:"يعمل عن بُعد — متاح دوليًا",
   },
   en:{
-    meta_title:"Projects | Mohammed Alryah",
-    meta_desc:"Real projects by Mohammed Mahmoud Alryah: Dental Zone, Interactive Digital Quran, Nehal Cultural Office, and MoMA AI agency.",
+    meta_title:"Blog | Mohammed Alryah",
+    meta_desc:"Mohammed Mahmoud Alryah's blog — upcoming posts on web development, AI business automation, and digital marketing.",
     nav_home:"Home", nav_about:"About", nav_skills:"Skills", nav_projects:"Projects", nav_blog:"Blog", nav_contact:"Contact",
     nav_cta:"Let's Work Together",
-    pr_eyebrow:"[ PROJECTS ]",
-    pr_title:"Real Projects, Not Prototypes",
-    pr_sub:"Every project here is live and actually in use — from educational sites to AI systems running on WhatsApp.",
-    f_all:"All", f_web:"Web", f_ai:"AI",
-    p1_body:"A comprehensive dental education platform built on WordPress, offering content and guidance for dental students and practitioners.",
-    p2_title:"Interactive Digital Quran",
-    p2_body:"A multi-page Islamic digital platform featuring Quran recitations, a reading page, and a dashboard — a personal project with a charitable spirit.",
-    p3_title:"Nehal Cultural Office",
-    p3_body:"A showcase and portfolio site built for a client, presenting visual identity and cultural content professionally.",
-    p4_title:"MoMA AI — AI Automation Agency",
-    p4_body:"My own AI business-automation agency — a 24/7 clinic chatbot for appointment booking, process automation and data migration, and store intelligence for customer behavior. Packages start at $25.",
-    tech_responsive:"Responsive Design", tech_client:"Client Work", tech_automation:"Automation",
-    proj_visit:"Visit project", proj_repo:"View repository",
+    bl_eyebrow:"[ BLOG ]",
+    bl_title:"Blog Coming Soon",
+    bl_sub:"I'll soon be writing here about web development, AI business automation, and digital marketing — follow along for the first update.",
+    t1_t:"How Automation Turns Your Clinic Into a 24/7 System",
+    t1_b:"A look inside building a real appointment-booking chatbot for dental clinics.",
+    t2_t:"A Practical Guide to Building a Bilingual Website From Scratch",
+    t2_b:"How to design a site that genuinely serves Arabic and English readers, no shortcuts.",
+    t3_t:"Turning Your Followers Into Actual Customers",
+    t3_b:"Practical content strategies I've tested with real brands.",
+    soon:"Coming soon",
+    notify_title:"Be the First to Know",
+    notify_sub:"Leave your email and I'll notify you the moment the first post goes live.",
+    notify_ph:"Your email",
+    notify_btn:"Notify Me",
+    notify_success:"Done! I'll notify you as soon as the first post goes live.",
     cta_title:"Have an idea? Let's make it work.",
     cta_sub:"Whether it's a new website or a smart AI automation system — reach out now.",
     cta_btn:"Get in Touch",
@@ -483,6 +466,10 @@ function applyLang(lang){
   document.querySelectorAll('[data-i18n-html]').forEach(el=>{
     const k = el.getAttribute('data-i18n-html');
     if(dict[k]!==undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const k = el.getAttribute('data-i18n-placeholder');
+    if(dict[k]!==undefined) el.setAttribute('placeholder', dict[k]);
   });
   document.title = dict.meta_title;
   const metaDesc = document.querySelector('meta[name="description"]');
@@ -521,15 +508,11 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:.12});
 document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 
-document.querySelectorAll('.filter-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.filter;
-    document.querySelectorAll('.project-card[data-cat]').forEach(card=>{
-      card.classList.toggle('hide', f!=='all' && card.dataset.cat!==f);
-    });
-  });
+document.getElementById('notifyForm').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const msg = document.getElementById('notifyMsg');
+  msg.classList.add('show');
+  document.getElementById('notifyEmail').value = '';
 });
 
 applyLang(currentLang());
